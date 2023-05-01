@@ -17,7 +17,7 @@ export default function Footer({ token }) {
                     <div>Cart</div>
                 </NavigateButton>
             </Link>
-            <Link to={`/order/${token}`}>
+            <Link to={`/order`}>
                 <NavigateButton>
                     <IoList size={30} color="#FAFAFA" />
                     <div>Order History</div>
