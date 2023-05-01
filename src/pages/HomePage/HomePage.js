@@ -3,19 +3,19 @@ import Footer from "../../components/Footer/Footer";
 import { HomeContainer, HomeHeader, ProductsDescription, ProductsExibition } from "./style";
 import { BiFemale, BiMale, BiMaleFemale } from "react-icons/bi";
 import { GiRunningShoe } from "react-icons/gi";
-import { TbCircleLetterG } from "react-icons/tb"
+import { TbCircleLetterG } from "react-icons/tb";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
 export default function HomePage() {
 
-    const [gender, setGender] = useState('all')
-    const [products, setProducts] = useState([])
+    const [gender, setGender] = useState('all');
+    const [products, setProducts] = useState([]);
 
     useEffect(() => {
-        const URL = `${process.env.REACT_APP_API_URL}/products/${gender}`
+        const URL = `${process.env.REACT_APP_API_URL}/products/${gender}`;
 
-        const promisse = axios.get(URL)
+        const promisse = axios.get(URL);
 
         promisse.then((res) => {
             setProducts(res.data)
@@ -24,7 +24,7 @@ export default function HomePage() {
             alert(err.response.data)
         })
 
-    }, [gender])
+    }, [gender]);
 
     return (
         <HomeContainer>
@@ -51,7 +51,7 @@ export default function HomePage() {
             <ul>
                 {products.map((product) => (
                     <ProductsExibition key={product._id}>
-                        <Link to={`/products/datails/${product._id}`}>
+                        <Link to={`/products/details/${product._id}`}>
                             <img src={product.photo} alt={`${product.name}`} />
                             <ProductsDescription>
                                 <h1>{product.name}</h1>
@@ -60,7 +60,7 @@ export default function HomePage() {
                                         <TbCircleLetterG color="FAFAFA" />
                                         <h1>{product.gender}</h1>
                                     </div>
-                                    <h2>{`$${product.price.toFixed(2)}`}</h2>
+                                    <h2>{`$${product.price?.toFixed(2)}`}</h2>
                                 </div>
                             </ProductsDescription>
                         </Link>
