@@ -1,7 +1,7 @@
 import { ItemContainer, ItemInfos } from './style';
 import { AiOutlineClose } from 'react-icons/ai';
 
-export default function CartItem({ item }) {
+export default function CartItem({ item, handleRemoveItem }) {
     return (
         <ItemContainer>
             <img src={item.photoProduct} alt={item.nameProduct}/>
@@ -11,7 +11,7 @@ export default function CartItem({ item }) {
                 <p>Qty: {item.qtProduct}</p>
                 <p>${item.priceProduct}</p>
             </ItemInfos>
-            <AiOutlineClose />
+            <AiOutlineClose onClick={() => handleRemoveItem(item)}/>
         </ItemContainer>
     );
 }

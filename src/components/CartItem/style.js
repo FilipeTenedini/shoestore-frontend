@@ -9,6 +9,7 @@ export const ItemContainer = styled.article`
     background-color: #FFF;
     margin-bottom: 10px;
     position: relative;
+    box-shadow: 0px 21px 43px rgba(58, 76, 130, 0.08);
 
     img{
         width: 115px;
