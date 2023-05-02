@@ -26,14 +26,3 @@ export const Container = styled.main`
         padding-bottom: 30px;
     }
 `;
-
-export const OrderDetailsContainer = styled.div`
-    width: 100%;
-    height: 38px;
-    justify-content: center;
-    align-items: center;
-    background-color: #FFF;
-    position: absolute;
-    bottom: 90px;
-    display: ${({totalPrice}) => totalPrice > 0 ? 'flex' : 'none    '};
-`;

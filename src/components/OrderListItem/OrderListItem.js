@@ -1,10 +1,12 @@
 import dayjs from "dayjs";
 import { Date, ItemContainer, SeeOrder, Value } from "./style";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router";
 
 export default function OrderListItem({order}){
     const {data, products, _id} = order;
     const [total, setTotal] = useState();
+    const navigate = useNavigate();
 
     useEffect(()=>{
         let sum = 0;
@@ -14,7 +16,7 @@ export default function OrderListItem({order}){
     },[]);
 
     function viewOrder(){
-        alert(_id);
+        navigate(`/order/${_id}`);
     }
     
     return(
