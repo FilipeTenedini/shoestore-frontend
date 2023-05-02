@@ -10,6 +10,7 @@ export default function OrderHistoryPage() {
     const [orders, setOrders] = useState([]);
     const { userData } = useContext(UserContext);
     const navigate = useNavigate();
+    console.log(orders);
 
     useEffect(() => {
         if (userData) {
@@ -22,6 +23,7 @@ export default function OrderHistoryPage() {
             axios.get(`${process.env.REACT_APP_API_URL}/order`, config)
                 .then((response) => {
                     setOrders(response.data);
+                    console.log(response.data);
                 })
                 .catch((err) => console.log(err.message));
         }else{
