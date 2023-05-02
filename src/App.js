@@ -8,10 +8,10 @@ export default function App() {
   const [userData, setUserData] = useState(undefined);
   console.log(userData);
   return (
-   <UserContext.Provider value={{userData, setUserData}}>
-    <ResetCss />
-    <GlobalStyle />
-    <MyRoutes />
-   </UserContext.Provider>
+    <UserContext.Provider value={{userData, setUserData}}>
+      <ResetCss />
+      <GlobalStyle />
+      <MyRoutes />
+    </UserContext.Provider>
   );
 }

@@ -15,10 +15,8 @@ export default function DetailPage() {
     const [productSize, setProductSize] = useState();
     const [productQT, setProductQT] = useState('')
     const navigate = useNavigate()
-
     useEffect(() => {
         const URL = `${process.env.REACT_APP_API_URL}/products/details/${productId}`;
-
         const promisse = axios.get(URL);
 
         promisse.then((res) => {
@@ -45,7 +43,8 @@ export default function DetailPage() {
             idProduct: productId,
             sizeProduct: productSize,
             qtProduct: Number((Number(productQT)).toFixed(0)),
-            priceProduct: Number((description.price).toFixed(2))
+            priceProduct: Number((description.price).toFixed(2)),
+            photoProduct: description.photo,
         }
         
         const URL = `${process.env.REACT_APP_API_URL}/cart`;
