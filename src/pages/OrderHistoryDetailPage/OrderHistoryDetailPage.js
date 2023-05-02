@@ -59,7 +59,7 @@ export default function OrderHistoryDetailPage() {
                             key={p._id}
                             name={p.name}
                             picture={p.photo}
-                            price={p.price.toFixed(2)}
+                            price={p.price}
                             product={orderData.products.find(pr => pr.idProduct === p._id)}
                         />
                     ))}

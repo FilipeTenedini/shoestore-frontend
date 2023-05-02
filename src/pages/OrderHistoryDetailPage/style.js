@@ -5,6 +5,7 @@ export const PageContainer = styled.section`
     font-family: 'Montserrat', sans-serif;
     padding-top: 72px;
     padding-bottom: 90px;
+    min-height: 100vh;
 `;
 
 export const PageHeader = styled.header`
