@@ -16,13 +16,13 @@ export default function CartPage() {
     const navigate = useNavigate();
     const { userData } = useContext(UserContext);
     
-    // useEffect(() => {
-    //     if (!userData) {
-    //         alert("You must be logged in to see your cart.");
-    //         navigate("/signin");
-    //         return
-    //     }
-    // }, [userData]);
+    useEffect(() => {
+        if (!userData) {
+            alert("You must be logged in to see your cart.");
+            navigate("/signin");
+            return
+        }
+    }, [userData]);
 
     useEffect(() => {
         setIsLoading(true);
