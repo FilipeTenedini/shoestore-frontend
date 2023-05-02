@@ -76,5 +76,6 @@ export default function SignInPage() {
                 </button>
             </form>
             <Link to="/signup">Dont have an account? <b>Sign up</b></Link>
+            <Link to="/"><b>Continue without buying</b></Link>
         </SignInContainer>);
 }
