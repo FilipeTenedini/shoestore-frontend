@@ -71,6 +71,10 @@ export default function OrderHistoryDetailPage() {
                 <p>{`Zipcode: ${orderData.address.zipcode}`}</p>
             </AddressInfo>
             <TotalAmount>
+                <h3>Payment</h3>
+                <span>{orderData.payment}</span>
+            </TotalAmount>
+            <TotalAmount>
                 <h3>TotalAmount</h3>
                 <span>{`$${Number(total).toFixed(2)}`}</span>
             </TotalAmount>
