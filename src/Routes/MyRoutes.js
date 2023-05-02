@@ -4,6 +4,7 @@ import SignUpPage from "../pages/SignUpPage/SignUpPage";
 import SignInPage from "../pages/SignInPage/SignInPage";
 import DetailPage from "../pages/DetailPage/DetailPage";
 import CartPage from "../pages/CartPage/CartPage.js";
+import OrderHistoryPage from "../pages/OrderHistoryPage/OrderHistoryPage.js";
 
 export default function MyRoutes() {
     return (
@@ -14,6 +15,7 @@ export default function MyRoutes() {
                 <Route exact path="/signup" element={<SignUpPage />} />
                 <Route exact path="/signin" element={<SignInPage />} />
                 <Route exact path="/cart" element={<CartPage />} />
+                <Route exact path="/order" element={<OrderHistoryPage />} />
             </Routes>
         </BrowserRouter>
     );
