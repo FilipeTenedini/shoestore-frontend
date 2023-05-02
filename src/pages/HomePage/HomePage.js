@@ -51,7 +51,7 @@ export default function HomePage() {
             <ul>
                 {products.map((product) => (
                     <ProductsExibition key={product._id}>
-                        <Link to={`/products/datails/${product._id}`}>
+                        <Link to={`/products/details/${product._id}`}>
                             <img src={product.photo} alt={`${product.name}`} />
                             <ProductsDescription>
                                 <h1>{product.name}</h1>
