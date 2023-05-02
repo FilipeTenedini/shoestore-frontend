@@ -25,7 +25,7 @@ export default function AddressPage() {
             city: {value: city}, number: {value: number}, street: {value: street}, zipcode: {value: zipcode}
         } = addressFormValue
 
-        if (zipcode.length !== 8) return alert('Zip code can only be 8 characters long');
+        if (zipcode.replace('-', '').replace('.', '').length !== 8) return alert('Zip code can only be 8 characters long');
 
         if (!city || !number || !street || !zipcode) {
            return alert('Fill in the form correctly');

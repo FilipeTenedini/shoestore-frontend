@@ -93,7 +93,7 @@ export default function CartPage() {
                                 <CartItem  key={item.photoProduct} item={item} handleRemoveItem={handleRemoveItem}/>
                             ))
                         }
-                        <OrderDetailsContainer totalPrice={totalPrice}>
+                        <OrderDetailsContainer totalPrice={totalPrice} isLoading={isLoading}>
                                 <p>Total: $ {totalPrice}</p>
                         </OrderDetailsContainer>
                         </section>

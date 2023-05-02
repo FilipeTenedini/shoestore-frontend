@@ -35,5 +35,5 @@ export const OrderDetailsContainer = styled.div`
     background-color: #FFF;
     position: absolute;
     bottom: 90px;
-    display: ${({totalPrice}) => totalPrice > 0 ? 'flex' : 'none'};
+    display: ${({totalPrice, isLoading}) => totalPrice > 0 && !isLoading ? 'flex' : 'none'};
 `;

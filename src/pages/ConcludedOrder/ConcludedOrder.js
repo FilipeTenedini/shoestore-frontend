@@ -19,8 +19,7 @@ export default function ConcludedOrder() {
                     </Link>
                 </section>
             </Container>
-            <CartFooter>
-            </CartFooter>
+            <CartFooter />
         </> 
     );
 }
