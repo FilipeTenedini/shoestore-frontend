@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const CartFooterDiv = styled.div`
+export const CartFooterDiv = styled.footer`
     position: fixed;
     z-index:2;
     border: 0px;

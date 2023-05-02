@@ -45,6 +45,7 @@ export default function DetailPage() {
             qtProduct: Number((Number(productQT)).toFixed(0)),
             priceProduct: Number((description.price).toFixed(2)),
             photoProduct: description.photo,
+            nameProduct: description.name,
         }
         
         const URL = `${process.env.REACT_APP_API_URL}/cart`;

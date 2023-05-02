@@ -3,24 +3,27 @@ import { useNavigate } from 'react-router';
 import UserContext from "../../contexts/UserContext";
 import { AiOutlineArrowLeft } from 'react-icons/ai';
 import { ThreeDots } from "react-loader-spinner";
+import axios from 'axios';
 import CartHeader from '../../components/CartHeader/CartHeader';
 import CartFooter from '../../components/CartFooter/CartFooter';
-import axios from 'axios';
-
-import { Container } from './style';
+import CartItem from "../../components/CartItem/CartItem";
+import { Container, OrderDetailsContainer } from './style';
 
 export default function CartPage() {
     const [cart, setCart] = useState([]);
+    const [totalPrice, setTotalPrice] = useState(0);
     const [isLoading, setIsLoading] = useState(true);
     const navigate = useNavigate();
     const { userData } = useContext(UserContext);
+    
     // useEffect(() => {
     //     if (!userData) {
     //         alert("You must be logged in to see your cart.");
     //         navigate("/signin");
     //         return
     //     }
-    // } ,[userData]);
+    // }, [userData]);
+
     useEffect(() => {
         setIsLoading(true);
         const config = {
@@ -30,19 +33,15 @@ export default function CartPage() {
         }
         axios
             .get(`${process.env.REACT_APP_API_URL}/cart`, config)
-            // .then((res) => setCart(res.data.products))
-            .then(() => setCart([
-                {"idProduct":"644afc8ab8ba505f3ad48e5a","sizeProduct":{"$numberInt":"36"},"qtProduct":{"$numberInt":"1"},"priceProduct":{"$numberInt":"36"}},
-                {"idProduct":"644af255b8ba505f3ad48e50","sizeProduct":{"$numberInt":"42"},"qtProduct":{"$numberInt":"2"},"priceProduct":{"$numberDouble":"85.5"}},
-                {"idProduct":"644afb3eb8ba505f3ad48e58","sizeProduct":{"$numberInt":"35"},"qtProduct":{"$numberInt":"2"},"priceProduct":{"$numberDouble":"69.3"}},
-                {"idProduct":"644af871b8ba505f3ad48e54","sizeProduct":{"$numberInt":"42"},"qtProduct":{"$numberInt":"1"},"priceProduct":{"$numberDouble":"49.6"}},
-                {"idProduct":"644af9a3b8ba505f3ad48e56","sizeProduct":{"$numberInt":"36"},"qtProduct":{"$numberInt":"1"},"priceProduct":{"$numberDouble":"49.6"}},
-            ]))
+            .then((res) => setCart(res.data.products))
             .catch((err) => console.log(err))
             .finally(() => setIsLoading(false));
     }, [userData]);
 
-    console.log(cart);
+    useEffect(() => {
+        setTotalPrice(cart.reduce((acc, val) => acc + (val.priceProduct * val.qtProduct), 0));
+    }, [cart]);
+    console.log(totalPrice);
 
     return (
         <>
@@ -52,7 +51,7 @@ export default function CartPage() {
             </CartHeader>
             <Container>
                 { isLoading &&
-                    <div>
+                    <span>
                         <ThreeDots
                             height="20"
                             width="40"
@@ -63,17 +62,27 @@ export default function CartPage() {
                             wrapperClassName=""
                             visible={true}
                         />
-                    </div>
+                    </span>
                 }
                 {cart.length === 0 && !isLoading
-                        ? ( <div>
-                                Vocẽ não possui itens no carrinho
-                            </div>) 
-                        : ''
-                }
+                    ? ( <span>
+                            Vocẽ não possui itens no carrinho
+                        </span>
+                    ) 
+                    : ( <section>
+                        {
+                            cart.map(item =>  <CartItem  key={item.photoProduct} item={item} />)
+                        }
+                        <OrderDetailsContainer totalPrice={totalPrice}>
+                                <p>Total: $ {totalPrice}</p>
+                        </OrderDetailsContainer>
+                        </section>
+                    )
+               }
+
             </Container>
             <CartFooter>
-                <button> Continue to Payment</button>
+                <button onClick={() => navigate('/cart/address')}> Add new address </button>
             </CartFooter>
         </> 
     );
