@@ -29,7 +29,7 @@ export default function AddressPage() {
         }
         addressFormValue.obj = { city, number, street, zipcode };
 
-        navigate("/checkout");
+        navigate("/checkout", {state: addressFormValue.obj});
 
         console.log(addressFormValue.obj);
     }
