@@ -13,7 +13,7 @@ export function OrderDetailItem({name, picture, price, product}) {
                     <Quantity>{`Qty: ${product.qtProduct}`}</Quantity>
                 </ProductInfo>
             </InfoContainer>
-            <Price>{`$${price}`}</Price>
+            <Price>{`$${(price * product.qtProduct).toFixed(2)}`}</Price>
         </ItemContainer>
     );
 }

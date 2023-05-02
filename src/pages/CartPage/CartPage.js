@@ -41,7 +41,25 @@ export default function CartPage() {
     useEffect(() => {
         setTotalPrice(cart.reduce((acc, val) => acc + (val.priceProduct * val.qtProduct), 0));
     }, [cart]);
-    console.log(totalPrice);
+
+    function handleRemoveItem(item) {
+        setIsLoading(true)
+        const body = { item }
+        const config = {
+            headers: { Authorization: `Bearer ${userData}` }
+        }
+        axios
+            .put(`${process.env.REACT_APP_API_URL}/cart/remove`, body, config)
+            .then((res)=>{
+                console.log(res);
+                const newCart = cart.filter(p => p.idProduct !== item.idProduct);
+                setCart(newCart);
+            })
+            .catch((err)=>{
+                console.log(err)
+            })
+            .finally(() => setIsLoading(false));
+    }
 
     return (
         <>
@@ -66,12 +84,14 @@ export default function CartPage() {
                 }
                 {cart.length === 0 && !isLoading
                     ? ( <span>
-                            Vocẽ não possui itens no carrinho
+                            Your cart is empty! 
                         </span>
                     ) 
                     : ( <section>
                         {
-                            cart.map(item =>  <CartItem  key={item.photoProduct} item={item} />)
+                            cart.map((item) => (
+                                <CartItem  key={item.photoProduct} item={item} handleRemoveItem={handleRemoveItem}/>
+                            ))
                         }
                         <OrderDetailsContainer totalPrice={totalPrice}>
                                 <p>Total: $ {totalPrice}</p>
