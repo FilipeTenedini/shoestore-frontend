@@ -10,7 +10,7 @@ export default function OrderListItem({order}){
 
     useEffect(()=>{
         let sum = 0;
-        products.forEach( p => sum += p.priceProduct);
+        products.forEach( p => sum += (p.priceProduct * p.qtProduct));
         setTotal(sum);
         // eslint-disable-next-line
     },[]);
@@ -22,7 +22,7 @@ export default function OrderListItem({order}){
     return(
         <ItemContainer>
             <Date>{dayjs(data).format("DD/MM/YYYY")}</Date>
-            <Value>${total}</Value>
+            <Value>${Number(total).toFixed(2)}</Value>
             <SeeOrder onClick={viewOrder}>View</SeeOrder>
         </ItemContainer>
     )

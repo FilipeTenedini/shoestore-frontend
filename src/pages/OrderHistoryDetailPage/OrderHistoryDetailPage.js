@@ -28,7 +28,7 @@ export default function OrderHistoryDetailPage() {
                     const data = response.data
                     let sum = 0;
                     setOrderData(data);
-                    data.products.forEach(p => sum += p.priceProduct);
+                    data.products.forEach(p => sum += (p.priceProduct * p.qtProduct));
                     setTotal(sum);
                 })
                 .catch((err) => console.log(err.message));
@@ -72,7 +72,7 @@ export default function OrderHistoryDetailPage() {
             </AddressInfo>
             <TotalAmount>
                 <h3>TotalAmount</h3>
-                <span>{`$${total.toFixed(2)}`}</span>
+                <span>{`$${Number(total).toFixed(2)}`}</span>
             </TotalAmount>
             <Footer />
         </PageContainer>
