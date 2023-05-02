@@ -24,14 +24,21 @@ export default function AddressPage() {
         const {
             city: {value: city}, number: {value: number}, street: {value: street}, zipcode: {value: zipcode}
         } = addressFormValue
+
+        if (zipcode.length !== 8) return alert('Zip code can only be 8 characters long');
+
         if (!city || !number || !street || !zipcode) {
            return alert('Fill in the form correctly');
         }
-        addressFormValue.obj = { city, number, street, zipcode };
+        addressFormValue.obj = { 
+            city,
+            number: number.replace('-', '').replace('.', '').trim(),
+            street,
+            zipcode: zipcode.replace('-', '').replace('.', '').trim()
+        };
 
-        navigate("/checkout", {state: addressFormValue.obj});
+        navigate("/cart/checkout", {state: addressFormValue.obj});
 
-        console.log(addressFormValue.obj);
     }
 
     return (
